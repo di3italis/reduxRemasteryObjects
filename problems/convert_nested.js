@@ -33,14 +33,23 @@ const genNestedData = (length=10, result=[]) => {
     return result
 }
 
-const dataArray = genNestedData(5)
+const dataArray = genNestedData(5) // generate an array of nested objects, length of 5 (override default length of 10)
 
-const convertNested = () => {
+const convertNested = (array) => {
     // your code here
+    // convert array to normalized object
+    // return the normalized object
+    // details key is excluded, but its data is flattened
+    let flattenedData = {}
+    for (let i = 0; i < array.length; i ++) {
+        let id = array[i].id
+        let detailsVal = array[i].details
+        let newObj = {...array[i]}
+        delete newObj.details
+        flattenedData[id] = {...newObj, ...detailsVal}
+    }
+    return flattenedData;
 }
-
-
-
 
 // console.log('dataArray: ', dataArray)
 // console.log(convertNested(dataArray))
@@ -50,3 +59,4 @@ module.exports = {
     convertNested,
     genNestedData
 };
+

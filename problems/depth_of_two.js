@@ -1,4 +1,3 @@
-
 /*
 Given an object that has other objects nested inside of it, write a
 function that takes that object and returns an array of all values
@@ -29,18 +28,38 @@ const nestedObj = {
     }
 }
 
-const depthOfTwo = () => {
+const depthOfTwo = (obj) => {
     // your code here
+    const vals = [];
+    Object.keys(obj).forEach(key => {
+        if (typeof obj[key] === "object" && obj[key] !== null) {
+            Object.values(obj[key]).forEach(val =>
+            vals.push(val))
+        }
+    })
+    
+    return vals;
 }
 
-const anyDepthBonus = () => {
+const anyDepthBonus = (obj, depth, currDepth = 1) => {
     // your code here
+    const vals = [];
+    if (depth === currDepth) {
+        return Object.values(obj);
+    } 
+    Object.values(obj).forEach(val => {
+        if (typeof val === "object" && val !== null && !Array.isArray(val)) {
+            vals.push(...anyDepthBonus(val, depth, currDepth + 1));
+        }
+    })
+    return vals;
 }
 
 
 
-// console.log(depthOfTwo(nestedObj));               // ["cello", "dello", "fellow", { h: "hello", i: "io" }, "jello"]
-// console.log(anyDepthBonus(nestedObj, 3))          // ["hello", "io"]
+console.log(depthOfTwo(nestedObj));               // ["cello", "dello", "fellow", { h: "hello", i: "io" }, "jello"]
+console.log(anyDepthBonus(nestedObj, 3))          // ["hello", "io"]
 
-/*** Do not change the code below this line ***/
+// /*** Do not change the code below this line ***/
 module.exports = { depthOfTwo, anyDepthBonus }
+
