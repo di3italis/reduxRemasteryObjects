@@ -1,0 +1,18 @@
+{
+    "name": "remastery-object-practice",
+    "version": "1.0.0",
+    "description": "Mod 5 remastery object practice solution",
+    "main": "convert_nested.js",
+    "scripts": {
+      "test": "mocha"
+    },
+    "author": "dpurcell@appacademy.io",
+    "license": "ISC",
+    "dependencies": {
+      "@faker-js/faker": "^7.6.0",
+      "chai": "^4.3.7",
+      "mocha": "^10.2.0",
+      "nanoid": "^4.0.0"
+    },
+    "private": true
+  }
