@@ -40,13 +40,14 @@ const convertNested = (array) => {
     // convert array to normalized object
     // return the normalized object
     // details key is excluded, but its data is flattened
-    let flattenedData = {}
-    for (let i = 0; i < array.length; i ++) {
-        let id = array[i].id
-        let detailsVal = array[i].details
-        let newObj = {...array[i]}
-        delete newObj.details
-        flattenedData[id] = {...newObj, ...detailsVal}
+    //
+    let flattenedData = {}     // empty object to store flattened data
+    for (let i = 0; i < array.length; i ++) {   // loop through the array
+        let id = array[i].id    // get the id (line 22)
+        let detailsVal = array[i].details   // get the details value (line 25)
+        let newObj = {...array[i]}  // new obj from spread array elements
+        delete newObj.details  // delete the details key/nested obj
+        flattenedData[id] = {...newObj, ...detailsVal}  // finally, flatten into flattenedData = { id: { flattened data } }
     }
     return flattenedData;
 }

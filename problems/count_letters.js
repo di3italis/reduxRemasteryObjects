@@ -9,20 +9,19 @@ and punctuation.
 
 const countLetters = (string) => {
     // your code here
-    // let charArr = string.split(" ").join("").split("").sort();
-    let charArr = string.toLowerCase().match(/[a-zA-Z]/g).sort();
-    let charObj = {};
-    let maxCount = 0;
-    let count = 0;
-    let maxChar = "";
+    let charArr = string.toLowerCase().match(/[a-zA-Z]/g).sort(); // remove spaces and punctuation, sort alphabetically
+    let charObj = {}; // empty obj-> key: char, value: count
+    let maxCount = 0; //  running tally
+    let count = 0; // count of each char, reset each iteration
+    let maxChar = ""; // char with max count
 
-    let result = charArr.forEach(char => {
-        charObj[char] = ((charObj[char] || 0) + 1)
-        if (charObj[char] > maxCount) {
-            maxCount = charObj[char];
-            maxChar = char;
-        } else if (charObj[char] === maxCount) {
-            maxChar = char < maxChar ? char : maxChar;
+    let result = charArr.forEach(char => { // loop through charArr
+        charObj[char] = ((charObj[char] || 0) + 1); // increment count of char in charObj
+        if (charObj[char] > maxCount) { // is current char count greater than maxCount?
+            maxCount = charObj[char]; // then update maxCount
+            maxChar = char; // update maxChar
+        } else if (charObj[char] === maxCount) { // otherwise, if tied,
+            maxChar = char < maxChar ? char : maxChar; // update maxChar to lexicographically smallest
         }
     })
    
